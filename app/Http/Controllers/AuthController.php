@@ -24,18 +24,21 @@ class AuthController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->validate(['email' => ['required', 'email', 'max:255'], 'password' => ['required', 'string', new SafePassword]]);
+        $data = $request->validate(['email' => ['required', 'email', 'max:255'], 'password' => ['required', 'string', new SafePassword(allowPublicDemo: true)]]);
         $key = Str::lower($data['email']).'|'.$request->ip();
         if (RateLimiter::tooManyAttempts($key, 5)) {
             throw ValidationException::withMessages(['email' => __('app.login_throttled', ['seconds' => RateLimiter::availableIn($key)])]);
         }
-        $user = User::where('email', $data['email'])->first();
-        if (! Auth::attempt($data + ['status' => 'active'], $request->boolean('remember'))) {
+        $publicDemoPassword = app()->isProduction() && hash_equals(User::PUBLIC_DEMO_PASSWORD, $data['password']);
+        if ($publicDemoPassword || ! Auth::attempt($data + ['status' => 'active'], $request->boolean('remember'))) {
             RateLimiter::hit($key, 60);
             throw ValidationException::withMessages(['email' => __('app.login_failed')]);
         }
+        $user = $request->user();
         if ($user->tenant_id && $user->tenant?->status !== 'active') {
             Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
             RateLimiter::hit($key, 60);
             throw ValidationException::withMessages(['email' => __('app.account_disabled')]);
         }
@@ -76,7 +79,7 @@ class AuthController extends Controller
 
     public function updatePassword(Request $request)
     {
-        $request->validate(['token' => ['required'], 'email' => ['required', 'email'], 'password' => ['required', 'confirmed', new SafePassword, PasswordRule::min(12)->mixedCase()->numbers()]]);
+        $request->validate(['token' => ['required', 'string', 'max:255'], 'email' => ['required', 'email', 'max:255'], 'password' => ['required', 'confirmed', new SafePassword, PasswordRule::min(12)->mixedCase()->numbers()]]);
         $status = Password::reset($request->only('email', 'password', 'password_confirmation', 'token'), function (User $user, string $password) {
             $user->forceFill(['password' => Hash::make($password), 'remember_token' => Str::random(60)])->save();
             DB::table('sessions')->where('user_id', $user->id)->delete();

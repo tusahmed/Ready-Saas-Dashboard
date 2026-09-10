@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\MailSetting;
 use App\Services\PlatformMailConfigurator;
+use Illuminate\Foundation\Http\Middleware\ValidateCsrfToken;
 use Illuminate\Mail\Transport\ArrayTransport;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
@@ -141,6 +142,87 @@ class MailSettingsTest extends TestCase
             $this->assertFalse($transport->isAutoTls());
             $this->assertSame($mode['encryption'] === 'ssl', $transport->getStream()->isTls());
             $this->assertSame($mode['encryption'] === 'ssl', $transport->isTlsRequired());
+        }
+    }
+
+    public function test_production_rejects_plaintext_smtp_and_accepts_encrypted_private_servers(): void
+    {
+        $this->actingAs($this->rootUser());
+        // CSRF behavior is covered separately; switching the environment also
+        // switches off Laravel's normal test-only CSRF bypass.
+        $this->withoutMiddleware(ValidateCsrfToken::class);
+        $this->app->instance('env', 'production');
+
+        try {
+            $this->get(route('admin.settings.smtp'))->assertOk()
+                ->assertSee('value="tls"', false)
+                ->assertSee('value="ssl"', false)
+                ->assertDontSee('value="none"', false);
+            $this->patchJson(route('admin.settings.smtp.update'), $this->settingsPayload(['encryption' => 'none']))
+                ->assertUnprocessable()->assertJsonValidationErrors('encryption');
+            $this->assertDatabaseCount('mail_settings', 0);
+
+            foreach ([['encryption' => 'tls', 'host' => '127.0.0.1'], ['encryption' => 'ssl', 'host' => '10.0.0.5', 'port' => 465]] as $mode) {
+                $this->saveSettings($mode);
+                $transport = app('mail.manager')->mailer()->getSymfonyTransport();
+                $this->assertTrue($transport->isTlsRequired());
+                $this->assertSame($mode['host'], $transport->getStream()->getHost());
+                $this->assertSame(15.0, $transport->getStream()->getTimeout());
+            }
+        } finally {
+            $this->app->instance('env', 'testing');
+        }
+    }
+
+    public function test_local_plaintext_settings_cannot_downgrade_delivery_after_production_deployment(): void
+    {
+        $this->actingAs($this->rootUser());
+        $this->saveSettings(['encryption' => 'none']);
+        $localTransport = app('mail.manager')->mailer()->getSymfonyTransport();
+        $this->assertFalse($localTransport->isTlsRequired());
+
+        $this->app->instance('env', 'production');
+        try {
+            $productionTransport = app('mail.manager')->mailer()->getSymfonyTransport();
+            $this->assertNotSame($localTransport, $productionTransport);
+            $this->assertTrue($productionTransport->isTlsRequired());
+            $this->assertTrue($productionTransport->isAutoTls());
+            $this->assertSame(15.0, $productionTransport->getStream()->getTimeout());
+        } finally {
+            $this->app->instance('env', 'testing');
+        }
+    }
+
+    public function test_environment_smtp_defaults_require_tls_in_production_with_a_bounded_timeout(): void
+    {
+        $originalEnv = $_ENV['APP_ENV'] ?? null;
+        $originalServer = $_SERVER['APP_ENV'] ?? null;
+        $_ENV['APP_ENV'] = $_SERVER['APP_ENV'] = 'production';
+
+        try {
+            $mail = require config_path('mail.php');
+            config([
+                'mail.default' => 'smtp',
+                'mail.mailers.smtp' => array_replace($mail['mailers']['smtp'], [
+                    'url' => null, 'host' => 'smtp.example.test', 'port' => 587,
+                ]),
+            ]);
+            $transport = app('mail.manager')->mailer()->getSymfonyTransport();
+            $this->assertInstanceOf(EsmtpTransport::class, $transport);
+            $this->assertTrue($transport->isAutoTls());
+            $this->assertTrue($transport->isTlsRequired());
+            $this->assertSame(15.0, $transport->getStream()->getTimeout());
+        } finally {
+            if ($originalEnv === null) {
+                unset($_ENV['APP_ENV']);
+            } else {
+                $_ENV['APP_ENV'] = $originalEnv;
+            }
+            if ($originalServer === null) {
+                unset($_SERVER['APP_ENV']);
+            } else {
+                $_SERVER['APP_ENV'] = $originalServer;
+            }
         }
     }
 

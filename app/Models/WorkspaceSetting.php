@@ -60,7 +60,7 @@ class WorkspaceSetting extends Model
     public function ownsLogoPath(?string $path): bool
     {
         return is_string($path)
-            && preg_match('/\Aworkspace-logos\/'.preg_quote($this->scope, '/').'\/[a-zA-Z0-9]{40}\.(?:png|jpg|webp)\z/', $path) === 1;
+            && preg_match('/\Aworkspace-logos\/'.preg_quote($this->scope, '/').'\/(?:sanitized\/)?[a-zA-Z0-9]{40}\.(?:png|jpg|webp)\z/', $path) === 1;
     }
 
     public function deleteLogoFile(?string $path = null): void

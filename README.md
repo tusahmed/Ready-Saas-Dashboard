@@ -26,7 +26,8 @@ The project is designed as a ready foundation for future SaaS products: install 
 ## 🧰 Tech Stack
 
 - **Laravel 12**
-- **PHP 8.2.12**
+- **PHP 8.2.12 compatibility** — deploy with the latest supported security patch; see [runtime security](docs/SECURITY.md#-production-runtime-requirements)
+- **GD and Fileinfo** for mandatory image reconstruction and validation
 - **MySQL / MariaDB**
 - **Blade views**
 - **Plain CSS and JavaScript in `public/assets`**
@@ -55,7 +56,7 @@ OrbitDemo!2026
 | Nova Client Owner | `owner@nova.test` | `OrbitDemo!2026` |
 | Nova Client Member | `member@nova.test` | `OrbitDemo!2026` |
 
-These are public demo credentials for local development only. For a real project, create your own first admin with `php artisan saas:install`.
+These are public demo credentials for local development only. Production rejects this public password at login and blocks existing demo sessions, including after a copied development database. For a real project, create your own first admin with `php artisan saas:install`.
 
 ## 🖥️ Main Screens
 
@@ -114,7 +115,7 @@ Available to Super Admin and client users with the correct permission:
 - Description
 - Workspace logo
 
-The uploaded logo is private and served through an authenticated route. It accepts PNG, JPEG, and WebP up to 2MB and 4096 x 4096 pixels. The logo and business name appear in the dashboard brand area.
+The uploaded logo is private and served through an authenticated route. It accepts PNG, JPEG, and WebP up to 2 MiB, 4096 pixels per side and 4,194,304 total pixels. Use a simple filename such as `company-logo.png`. GD reconstructs the image from pixels before storage, stripping metadata and appended payloads; executable extensions, SVG/HTML, double extensions and spoofed images are rejected. The logo and business name appear in the dashboard brand area.
 
 ### SMTP Settings
 
@@ -123,7 +124,7 @@ Available only to the main Super Admin platform account:
 - Enable or disable platform SMTP
 - Host
 - Port
-- Encryption: TLS, SSL, or none
+- Encryption: TLS or SSL; plaintext is available only in local/testing environments
 - Username
 - Encrypted password
 - From email
@@ -207,10 +208,13 @@ The command asks for the password interactively. You can pass `--password` for a
 
 The latest validation covered:
 
-- ✅ 81 PHP tests
-- ✅ 674 PHP assertions
+- ✅ 112 PHP tests
+- ✅ 960 PHP assertions
 - ✅ 33 browser smoke scenarios
-- ✅ 69 UI and visual checks
+- ✅ 7 live browser security scenarios, including CSP injection blocking and real CSRF rejection
+- ✅ 21 Apache checks using a real PHP handler
+- ✅ No reported Composer advisories at the time of this check
+- ✅ 69 UI and visual checks from the previous design review
 - ✅ Blade view caching
 - ✅ Laravel Pint formatting on touched source files
 
@@ -227,6 +231,7 @@ More details are available in:
 - [Testing Guide](docs/TESTING.md)
 - [Architecture Notes](docs/ARCHITECTURE.md)
 - [cPanel Deployment Guide](docs/CPANEL.md)
+- [Security Model and Deployment](docs/SECURITY.md)
 - [Main Design Review](docs/design/REVIEW.md)
 - [Settings Design Review](docs/design/SETTINGS-REVIEW.md)
 
@@ -263,12 +268,15 @@ Read the full checklist in [docs/CPANEL.md](docs/CPANEL.md).
 
 ## 🔐 Security Notes
 
-- `.env` is ignored by Git.
-- SMTP passwords are encrypted in the database.
-- Workspace logos are stored privately and served through authenticated routes.
-- Users are isolated by tenant.
-- Platform-only routes are protected by middleware and controller checks.
-- The demo command is intended for local and testing environments.
+- 🖼️ **Upload defense**: raster allowlist, actual MIME/decoder checks, size/pixel limits, GD reconstruction, private storage, tenant-owned delivery, and Apache execution denial.
+- 👤 **Account defense**: current-password confirmation for self credential changes, session/token revocation, login throttling, and production demo-password blocking.
+- 🏢 **Tenant defense**: actor-derived data scopes, permission checks and restricted role assignment.
+- 🌐 **Browser defense**: CSRF, enforced CSP, escaped user content, safe notification URLs, secure session defaults and security headers.
+- 🔗 **Reset-link defense**: canonical `APP_URL` links and production Host validation.
+- 📧 **Mail defense**: encrypted/hidden SMTP passwords and required TLS on live environments.
+- 🔍 **Continuous checks**: GitHub Actions runs the MySQL suite and Composer advisory audit on changes and weekly.
+
+Read [docs/SECURITY.md](docs/SECURITY.md) for the implementation, attack tests and required hosting settings. No security review can promise 100% protection. Keep PHP/GD and the hosting stack patched; compatibility with PHP 8.2.12 does not make that old runtime safe to expose publicly.
 
 ## 🧭 Future Ideas
 

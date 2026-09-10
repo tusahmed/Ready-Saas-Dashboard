@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\ActiveAccount;
+use App\Http\Middleware\EnsureTrustedHost;
 use App\Http\Middleware\PlatformOnly;
 use App\Http\Middleware\RequirePermission;
 use App\Http\Middleware\SecurityHeaders;
@@ -17,7 +18,9 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->trimStrings(except: ['smtp_password']);
-        $middleware->web(append: [SetPreferences::class, SecurityHeaders::class]);
+        $middleware->prepend(SecurityHeaders::class);
+        $middleware->append(EnsureTrustedHost::class);
+        $middleware->web(append: [SetPreferences::class]);
         $middleware->alias([
             'active' => ActiveAccount::class,
             'permission' => RequirePermission::class,

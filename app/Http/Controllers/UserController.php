@@ -71,27 +71,38 @@ class UserController extends Controller
         } else {
             Access::assignableRole($request->user(), $roleId);
         }
+        $selfCredentialsChanged = $user->id === $request->user()->id
+            && ($data['email'] !== $user->email || ! empty($data['password']));
+        if ($selfCredentialsChanged) {
+            $request->validate(['current_password' => ['required', 'string', new SafePassword, 'current_password']]);
+        }
         DB::transaction(function () use ($request, $data, $user, $roleId) {
             $passwordChanged = ! empty($data['password']);
+            $emailChanged = $data['email'] !== $user->email;
             if (! $passwordChanged) {
                 unset($data['password']);
             }
-            if ($data['email'] !== $user->email) {
-                DB::table('password_reset_tokens')->where('email', $user->email)->delete();
+            if ($emailChanged) {
+                DB::table('password_reset_tokens')->whereIn('email', [$user->email, $data['email']])->delete();
                 $user->email_verified_at = null;
             }
             $user->fill($data);
             $user->role_id = $roleId;
-            if ($passwordChanged) {
+            if ($passwordChanged || $emailChanged || $data['status'] !== 'active') {
                 $user->remember_token = Str::random(60);
                 DB::table('password_reset_tokens')->where('email', $user->email)->delete();
             }
             $user->save();
-            if ($passwordChanged || $user->status !== 'active') {
+            if ($passwordChanged || $emailChanged || $user->status !== 'active') {
                 DB::table('sessions')->where('user_id', $user->id)->where('id', '!=', $request->session()->getId())->delete();
             }
             ActivityLogger::record($request->user(), 'users.updated', $user->name, route('users.index', absolute: false));
         });
+        if ($selfCredentialsChanged) {
+            // Keep the authenticated instance synchronized for auth.session middleware.
+            $request->user()->refresh();
+            $request->session()->regenerate(true);
+        }
 
         return $this->redirectFor($request, 'users.view', 'users.index')->with('success', __('app.saved'));
     }

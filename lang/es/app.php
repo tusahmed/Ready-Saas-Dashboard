@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'email_password_confirmation_hint' => 'Introduce tu contraseña actual solo si cambias tu dirección de correo electrónico.',
+    'credentials_password_confirmation_hint' => 'Introduce tu contraseña actual para cambiar tu propio correo electrónico o contraseña.',
+    'password_public_demo' => 'La contraseña pública de demostración no se puede usar en producción. Elige una contraseña privada.',
     'nav_overview' => 'Vista general',
     'workspace_appearance' => 'Apariencia del espacio de trabajo',
     'workspace_appearance_description' => 'Elija la navegación y los colores que se adapten a su forma de trabajar.',
@@ -365,7 +368,7 @@ return [
     'workspace_logo' => 'Logotipo del espacio',
     'workspace_logo_description' => 'Dale a este espacio la identidad de tu empresa.',
     'logo_upload' => 'Elegir logotipo',
-    'logo_upload_help' => 'PNG, JPG o WEBP. Tamaño máximo: 2 MB.',
+    'logo_upload_help' => 'PNG, JPG o WEBP, hasta 2 MB y 4 megapíxeles (4096 px por lado). Ejemplo de nombre: company-logo.png.',
     'logo_preview' => 'Vista previa del logotipo',
     'remove_logo' => 'Eliminar el logotipo actual',
     'logo_saved_hint' => 'Los cambios se aplican al guardar la configuración.',

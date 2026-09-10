@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\WorkspaceSetting;
 use App\Services\ActivityLogger;
+use App\Services\SafeLogoUpload;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\StreamedResponse;
@@ -23,7 +23,7 @@ class SettingsController extends Controller
         return view('settings.general', ['settings' => WorkspaceSetting::forUser($request->user())]);
     }
 
-    public function update(Request $request): RedirectResponse
+    public function update(Request $request, SafeLogoUpload $uploads): RedirectResponse
     {
         $actor = $request->user();
         abort_unless($actor->canDo('settings.manage'), 403);
@@ -47,18 +47,7 @@ class SettingsController extends Controller
         unset($data['logo'], $data['remove_logo']);
 
         if ($request->hasFile('logo')) {
-            // Use the detected image type, never the submitted filename or MIME header.
-            $image = @getimagesize($request->file('logo')->getRealPath());
-            $extension = match ($image[2] ?? null) {
-                IMAGETYPE_PNG => 'png', IMAGETYPE_JPEG => 'jpg', IMAGETYPE_WEBP => 'webp', default => null,
-            };
-            if (! $extension) {
-                throw ValidationException::withMessages(['logo' => __('validation.image', ['attribute' => __('app.logo')])]);
-            }
-            $newLogo = $request->file('logo')->storeAs('workspace-logos/'.$scope, Str::random(40).'.'.$extension, 'local');
-            if (! $newLogo) {
-                throw ValidationException::withMessages(['logo' => __('app.logo_upload_failed')]);
-            }
+            $newLogo = $uploads->store($request->file('logo'), $scope);
         }
 
         try {
@@ -96,7 +85,7 @@ class SettingsController extends Controller
         return redirect()->route('settings.general')->with('success', __('app.saved'));
     }
 
-    public function logo(Request $request): StreamedResponse
+    public function logo(Request $request, SafeLogoUpload $uploads): StreamedResponse
     {
         $actor = $request->user();
         abort_unless($actor->status === 'active' && ($actor->isPlatform() || $actor->tenant?->status === 'active'), 403);
@@ -107,10 +96,31 @@ class SettingsController extends Controller
         $mime = $disk->mimeType($settings->logo_path);
         abort_unless(in_array($mime, ['image/png', 'image/jpeg', 'image/webp'], true), 404);
 
-        return $disk->response($settings->logo_path, 'logo.'.pathinfo($settings->logo_path, PATHINFO_EXTENSION), [
+        $headers = [
             'Content-Type' => $mime,
             'X-Content-Type-Options' => 'nosniff',
+            'Content-Security-Policy' => "default-src 'none'; sandbox",
+            'Cross-Origin-Resource-Policy' => 'same-origin',
             'Cache-Control' => 'private, no-store',
-        ], 'inline');
+        ];
+        $extension = pathinfo($settings->logo_path, PATHINFO_EXTENSION);
+        if (! str_contains($settings->logo_path, '/sanitized/')) {
+            // Older installations stored original image bytes. Never expose those
+            // bytes, including legacy metadata or appended scripts, after upgrading.
+            abort_if($disk->size($settings->logo_path) > 2 * 1024 * 1024, 404);
+            $original = $disk->get($settings->logo_path);
+            abort_unless(is_string($original), 404);
+            try {
+                $clean = $uploads->sanitize($original, $extension);
+            } catch (ValidationException) {
+                abort(404);
+            }
+
+            return response()->stream(fn () => print ($clean), 200, $headers + [
+                'Content-Disposition' => 'inline; filename="logo.'.$extension.'"',
+            ]);
+        }
+
+        return $disk->response($settings->logo_path, 'logo.'.$extension, $headers, 'inline');
     }
 }

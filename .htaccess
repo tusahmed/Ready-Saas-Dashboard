@@ -1,0 +1,5 @@
+# Fail closed if the entire project is accidentally used as the document root.
+# The intended public/ directory has its own authorization and rewrite rules.
+<IfModule mod_authz_core.c>
+    Require all denied
+</IfModule>

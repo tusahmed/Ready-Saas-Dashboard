@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'email_password_confirmation_hint' => 'Saisissez votre mot de passe actuel uniquement pour modifier votre adresse e-mail.',
+    'credentials_password_confirmation_hint' => 'Saisissez votre mot de passe actuel pour modifier votre adresse e-mail ou votre mot de passe.',
+    'password_public_demo' => 'Le mot de passe public de démonstration est interdit en production. Choisissez un mot de passe privé.',
     'nav_overview' => 'Vue d’ensemble',
     'workspace_appearance' => 'Apparence de l’espace de travail',
     'workspace_appearance_description' => 'Choisissez la navigation et les couleurs adaptées à votre façon de travailler.',
@@ -365,7 +368,7 @@ return [
     'workspace_logo' => 'Logo de l’espace',
     'workspace_logo_description' => 'Donnez à cet espace l’identité de votre entreprise.',
     'logo_upload' => 'Choisir un logo',
-    'logo_upload_help' => 'PNG, JPG ou WEBP. Taille maximale : 2 Mo.',
+    'logo_upload_help' => 'PNG, JPG ou WEBP, jusqu’à 2 Mo et 4 mégapixels (4096 px par côté). Exemple de nom : company-logo.png.',
     'logo_preview' => 'Aperçu du logo de l’espace',
     'remove_logo' => 'Supprimer le logo actuel',
     'logo_saved_hint' => 'Les modifications s’appliquent à l’enregistrement.',

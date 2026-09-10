@@ -64,6 +64,8 @@ class ClientController extends Controller
             $client->update($data);
             if ($client->status === 'suspended') {
                 DB::table('sessions')->whereIn('user_id', $client->users()->select('id'))->delete();
+                DB::table('password_reset_tokens')->whereIn('email', $client->users()->select('email'))->delete();
+                $client->users()->update(['remember_token' => null]);
             }
             ActivityLogger::record($request->user(), 'clients.updated', $client->name, route('admin.clients.show', $client, false));
         });

@@ -5,6 +5,7 @@ namespace Tests;
 use App\Models\Role;
 use App\Models\Tenant;
 use App\Models\User;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Support\Str;
@@ -12,6 +13,18 @@ use Illuminate\Support\Str;
 abstract class TestCase extends BaseTestCase
 {
     use RefreshDatabase;
+
+    public function actingAs(Authenticatable $user, $guard = null)
+    {
+        $guardName = $guard ?? $this->app['config']->get('auth.defaults.guard');
+        $previous = $this->app['auth']->guard($guardName)->user();
+        if ($previous && $previous->getAuthIdentifier() !== $user->getAuthIdentifier()) {
+            // Switching fixture identities simulates a fresh login, not a stolen session.
+            $this->app['session.store']->forget('password_hash_'.$guardName);
+        }
+
+        return parent::actingAs($user, $guard);
+    }
 
     public function createApplication()
     {

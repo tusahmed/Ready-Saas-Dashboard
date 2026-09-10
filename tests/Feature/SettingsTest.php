@@ -120,15 +120,15 @@ class SettingsTest extends TestCase
         $owner = $this->owner($tenant);
         $reader = $this->user($tenant);
         $logo = UploadedFile::fake()->image('business.png', 120, 80);
-        $bytes = file_get_contents($logo->getRealPath());
 
         $this->actingAs($owner)->patch(route('settings.general.update'), ['business_name' => 'Brand with a logo', 'logo' => $logo])
             ->assertSessionHasNoErrors()->assertRedirect(route('settings.general'));
         $settings = WorkspaceSetting::forUser($owner);
-        $this->assertMatchesRegularExpression('/\Aworkspace-logos\/tenant-'.$tenant->id.'\/[A-Za-z0-9]{40}\.png\z/', $settings->logo_path);
+        $this->assertMatchesRegularExpression('/\Aworkspace-logos\/tenant-'.$tenant->id.'\/sanitized\/[A-Za-z0-9]{40}\.png\z/', $settings->logo_path);
         Storage::disk('local')->assertExists($settings->logo_path);
         $this->assertStringStartsWith(route('settings.logo'), $settings->logo_url);
         $this->assertStringNotContainsString('storage/', $settings->logo_url);
+        $bytes = Storage::disk('local')->get($settings->logo_path);
 
         $response = $this->actingAs($reader)->get(route('settings.logo', ['scope' => 'platform', 'tenant_id' => 99999]))
             ->assertOk()->assertHeader('Content-Type', 'image/png')->assertHeader('X-Content-Type-Options', 'nosniff')

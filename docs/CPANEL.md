@@ -6,7 +6,9 @@
 
 من **MultiPHP Manager** اختر PHP 8.2 للدومين. توفر الإصدار والامتدادات يعتمد على شركة الاستضافة، وإصدار PHP المستخدم في Terminal يجب أن يطابق إصدار الموقع. راجع [إدارة PHP الرسمية في cPanel](https://docs.cpanel.net/cpanel/software/multiphp-manager-for-cpanel/).
 
-المشروع متوافق مع PHP 8.2.12. فعّل `pdo_mysql` وامتدادات Laravel المعتادة: Ctype وcURL وDOM وFileinfo وFilter وHash وMbstring وOpenSSL وPCRE وPDO وSession وTokenizer وXML. يجب أن تكون `storage` و`bootstrap/cache` قابلة للكتابة لحساب تشغيل PHP، و`APP_DEBUG=false` في الإنتاج. هذه متطلبات [نشر Laravel 12](https://laravel.com/docs/12.x/deployment).
+المشروع متوافق مع PHP 8.2.12، لكن الاستضافة الفعلية تحتاج آخر تحديث أمني من إصدار PHP مدعوم؛ الإصدار القديم المذكور للتوافق فقط. فعّل `gd` و`fileinfo` لإعادة بناء الصور بأمان، و`pdo_mysql` وامتدادات Laravel المعتادة: Ctype وcURL وDOM وFilter وHash وMbstring وOpenSSL وPCRE وPDO وSession وTokenizer وXML. يجب أن تكون `storage` و`bootstrap/cache` قابلة للكتابة لحساب تشغيل PHP، و`APP_DEBUG=false` في الإنتاج. هذه متطلبات [نشر Laravel 12](https://laravel.com/docs/12.x/deployment).
+
+راجع [دليل الأمان](SECURITY.md) قبل النشر: حافظ على ملفي `.htaccess`، وفعّل HTTPS وكوكيز آمنة، واضبط `APP_URL` على الدومين الصحيح، واستخدم TLS للبريد. حسابات العرض بكلمة المرور المنشورة ممنوعة في الإنتاج. اللوجوهات خاصة ولا تحتاج `storage:link`، ومسار `/storage` العام محظور في إعداد Apache المرفق.
 
 من MySQL Databases أنشئ قاعدة ومستخدمًا خاصين بالتطبيق واربط المستخدم بالقاعدة. استخدم الاسم الكامل الذي يظهر في cPanel مثل `account_orbit` و`account_orbituser`. phpMyAdmin يستخدم للمراجعة والتصدير والاستيراد؛ لا تستخدم حساب root المحلي على الاستضافة.
 

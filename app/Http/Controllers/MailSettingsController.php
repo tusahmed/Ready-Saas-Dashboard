@@ -13,7 +13,10 @@ class MailSettingsController extends Controller
     {
         $this->authorizeRoot($request);
 
-        return view('settings.smtp', ['settings' => MailSetting::query()->firstOrNew(['id' => 1])]);
+        return view('settings.smtp', [
+            'settings' => MailSetting::query()->firstOrNew(['id' => 1]),
+            'encryptionOptions' => $this->encryptionOptions(),
+        ]);
     }
 
     public function update(Request $request, PlatformMailConfigurator $configurator)
@@ -24,7 +27,7 @@ class MailSettingsController extends Controller
             'enabled' => ['sometimes', 'boolean'],
             'host' => [$requiredWhenEnabled, 'nullable', 'string', 'max:255', 'regex:/\A(?:[a-zA-Z0-9](?:[a-zA-Z0-9.-]*[a-zA-Z0-9])?|\[[0-9a-fA-F:]+\])\z/'],
             'port' => [$requiredWhenEnabled, 'nullable', 'integer', 'between:1,65535'],
-            'encryption' => [$requiredWhenEnabled, 'nullable', Rule::in(['tls', 'ssl', 'none'])],
+            'encryption' => [$requiredWhenEnabled, 'nullable', Rule::in($this->encryptionOptions())],
             'username' => ['nullable', 'string', 'max:255', 'not_regex:/[\x00\r\n]/'],
             'smtp_password' => ['nullable', 'string', 'max:2048', 'not_regex:/\x00/', Rule::prohibitedIf(fn () => $request->boolean('clear_password'))],
             'clear_password' => ['sometimes', 'boolean'],
@@ -52,5 +55,10 @@ class MailSettingsController extends Controller
     private function authorizeRoot(Request $request): void
     {
         abort_unless($request->user()?->is_super_admin && $request->user()->isPlatform(), 403);
+    }
+
+    private function encryptionOptions(): array
+    {
+        return app()->environment(['local', 'testing']) ? ['tls', 'ssl', 'none'] : ['tls', 'ssl'];
     }
 }

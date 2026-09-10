@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'email_password_confirmation_hint' => 'Enter your current password only when changing your email address.',
+    'credentials_password_confirmation_hint' => 'Enter your current password when changing your own email address or password.',
+    'password_public_demo' => 'The publicly shared demo password cannot be used in production. Choose a private password.',
     'nav_overview' => 'Overview',
     'workspace_appearance' => 'Workspace appearance',
     'workspace_appearance_description' => 'Choose the navigation and colors that fit the way you work.',
@@ -365,7 +368,7 @@ return [
     'workspace_logo' => 'Workspace logo',
     'workspace_logo_description' => 'Make this workspace feel like your business.',
     'logo_upload' => 'Choose a logo',
-    'logo_upload_help' => 'PNG, JPG or WEBP. Maximum file size: 2 MB.',
+    'logo_upload_help' => 'PNG, JPG or WEBP, up to 2 MB and 4 megapixels (4096 px per side). Use a name such as company-logo.png.',
     'logo_preview' => 'Workspace logo preview',
     'remove_logo' => 'Remove the current logo',
     'logo_saved_hint' => 'Changes apply when you save settings.',

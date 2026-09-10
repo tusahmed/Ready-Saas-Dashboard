@@ -7,9 +7,13 @@ use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
+    public const PUBLIC_DEMO_PASSWORD = 'OrbitDemo!2026';
+
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
@@ -58,6 +62,17 @@ class User extends Authenticatable
     public function isPlatform(): bool
     {
         return $this->tenant_id === null;
+    }
+
+    public function usesPublicDemoPassword(): bool
+    {
+        if (! app()->isProduction()) {
+            return false;
+        }
+
+        // Cache by password hash, so changing a password immediately changes the key.
+        return Cache::remember('security.public-demo-password.'.hash('sha256', $this->getAuthPassword()), 3600,
+            fn () => Hash::check(self::PUBLIC_DEMO_PASSWORD, $this->getAuthPassword()));
     }
 
     public function isOwner(): bool

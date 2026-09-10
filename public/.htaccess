@@ -1,9 +1,33 @@
+Options -Indexes
+
+<IfModule mod_authz_core.c>
+    Require all granted
+    <FilesMatch "(?i)^(?!index\.php$).*(?:\.(?:php[0-9]*|phtml|pht|phar|phps|cgi|pl|py|sh|bash|shtml|asp|aspx|jsp)(?:\.|$))">
+        Require all denied
+    </FilesMatch>
+    <FilesMatch "(?i)^(?:\.(?!well-known)|artisan$|composer\.(?:json|lock)$|phpunit\.xml$|.*\.(?:sql|bak|ini|log|env)$)">
+        Require all denied
+    </FilesMatch>
+</IfModule>
+
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always unset X-Powered-By
+</IfModule>
+
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
         Options -MultiViews -Indexes
     </IfModule>
 
     RewriteEngine On
+
+    # Only the root front controller may execute. Block executable double
+    # extensions too, even if a future change accidentally writes under public.
+    RewriteRule ^(?!index\.php$).*\.(?i:php[0-9]*|phtml|pht|phar|phps|cgi|pl|py|sh|bash|shtml|asp|aspx|jsp)(?:[./]|$) - [F,L]
+    # Private uploads must only be read by authenticated application handlers.
+    RewriteRule ^storage(?:/|$) - [F,L,NC]
+    RewriteRule (^|/)\.(?!well-known(?:/|$)) - [F,L]
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .

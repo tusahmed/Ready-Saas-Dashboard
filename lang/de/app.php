@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'email_password_confirmation_hint' => 'Geben Sie Ihr aktuelles Passwort nur ein, wenn Sie Ihre E-Mail-Adresse ändern.',
+    'credentials_password_confirmation_hint' => 'Geben Sie Ihr aktuelles Passwort ein, wenn Sie Ihre eigene E-Mail-Adresse oder Ihr Passwort ändern.',
+    'password_public_demo' => 'Das öffentliche Demo-Passwort ist im Produktivbetrieb nicht erlaubt. Wählen Sie ein privates Passwort.',
     'nav_overview' => 'Übersicht',
     'workspace_appearance' => 'Darstellung des Arbeitsbereichs',
     'workspace_appearance_description' => 'Wählen Sie die Navigation und Farben, die zu Ihrer Arbeitsweise passen.',
@@ -365,7 +368,7 @@ return [
     'workspace_logo' => 'Logo des Arbeitsbereichs',
     'workspace_logo_description' => 'Geben Sie Ihrem Arbeitsbereich die Identität Ihres Unternehmens.',
     'logo_upload' => 'Logo auswählen',
-    'logo_upload_help' => 'PNG, JPG oder WEBP. Maximale Dateigröße: 2 MB.',
+    'logo_upload_help' => 'PNG, JPG oder WEBP, maximal 2 MB und 4 Megapixel (4096 px je Seite). Beispielname: company-logo.png.',
     'logo_preview' => 'Vorschau des Arbeitsbereichslogos',
     'remove_logo' => 'Aktuelles Logo entfernen',
     'logo_saved_hint' => 'Änderungen werden beim Speichern übernommen.',

@@ -3,7 +3,8 @@
     "description": "Optional local browser verification; never required on the hosting server.",
     "scripts": {
         "test": "node smoke.cjs",
-        "test:redesign": "node redesign-interactions.cjs"
+        "test:redesign": "node redesign-interactions.cjs",
+        "test:security": "node security.cjs"
     },
     "devDependencies": {
         "playwright": "1.62.1"

@@ -35,6 +35,9 @@ class PlatformMailConfigurator
             $mail = $this->fallback;
             $settings = $this->savedSettings();
             if ($settings?->enabled) {
+                // A database copied from local development may still contain
+                // "none". Live environments must also enforce TLS at delivery.
+                $requireTls = ! $this->app->environment(['local', 'testing']) || $settings->encryption !== 'none';
                 $mail['default'] = 'platform_smtp';
                 $mail['mailers']['platform_smtp'] = [
                     'transport' => 'smtp',
@@ -45,8 +48,8 @@ class PlatformMailConfigurator
                     'port' => $settings->port,
                     'username' => $settings->username,
                     'password' => $settings->password,
-                    'auto_tls' => $settings->encryption === 'tls',
-                    'require_tls' => $settings->encryption !== 'none',
+                    'auto_tls' => $settings->encryption !== 'ssl' && $requireTls,
+                    'require_tls' => $requireTls,
                     'timeout' => 15,
                     'local_domain' => $this->fallback['mailers']['smtp']['local_domain'] ?? null,
                 ];

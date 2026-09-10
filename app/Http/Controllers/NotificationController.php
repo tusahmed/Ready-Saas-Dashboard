@@ -6,6 +6,7 @@ use App\Models\Activity;
 use App\Models\Tenant;
 use App\Models\User;
 use App\Notifications\SystemNotification;
+use App\Support\InternalUrl;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
@@ -27,7 +28,7 @@ class NotificationController extends Controller
             'notifications' => $request->user()->notifications()->limit(10)->get()->map(fn ($item) => [
                 'id' => $item->id, 'title' => $item->data['title'] ?? __($item->data['title_key'] ?? 'app.notification'),
                 'body' => $item->data['body'] ?? __($item->data['body_key'] ?? 'app.saved'),
-                'url' => $item->data['url'] ?? null, 'read_at' => $item->read_at?->toIso8601String(), 'created_at' => $item->created_at->toIso8601String(),
+                'url' => InternalUrl::safe($item->data['url'] ?? null), 'read_at' => $item->read_at?->toIso8601String(), 'created_at' => $item->created_at->toIso8601String(),
             ]),
         ])->header('Cache-Control', 'private, no-store');
     }

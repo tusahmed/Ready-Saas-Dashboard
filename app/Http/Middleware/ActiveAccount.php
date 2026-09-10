@@ -11,7 +11,7 @@ class ActiveAccount
     public function handle(Request $request, Closure $next)
     {
         $user = $request->user();
-        if ($user && ($user->status !== 'active' || ($user->tenant_id && $user->tenant?->status !== 'active'))) {
+        if ($user && ($user->status !== 'active' || ($user->tenant_id && $user->tenant?->status !== 'active') || $user->usesPublicDemoPassword())) {
             Auth::logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();

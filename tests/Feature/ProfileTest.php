@@ -71,6 +71,7 @@ class ProfileTest extends TestCase
             'name' => 'Updated person', 'email' => 'new-profile@example.test', 'phone' => '01001234567',
             'job_title' => 'Operations', 'bio' => 'Profile description', 'tenant_id' => null,
             'is_super_admin' => true, 'role_id' => null, 'status' => 'inactive',
+            'current_password' => 'SafePassword!123',
         ])->assertRedirect()->assertSessionHasNoErrors();
         $this->assertDatabaseHas('users', [
             'id' => $user->id, 'name' => 'Updated person', 'email' => 'new-profile@example.test',

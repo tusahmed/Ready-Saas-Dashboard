@@ -95,7 +95,7 @@ class RoleController extends Controller
     {
         $data = $request->validate([
             'name' => ['required', 'string', 'max:100', Rule::unique('roles')->where('tenant_id', $request->user()->tenant_id)->ignore($role?->id)],
-            'description' => ['nullable', 'string', 'max:1000'], 'permissions' => ['nullable', 'array'], 'permissions.*' => ['string', 'distinct'],
+            'description' => ['nullable', 'string', 'max:1000'], 'permissions' => ['nullable', 'array', 'max:'.count(Access::permissions($request->user()))], 'permissions.*' => ['string', 'max:100', 'distinct'],
         ]);
         $data['permissions'] = $data['permissions'] ?? [];
         Access::validatePermissions($request->user(), $data['permissions']);

@@ -45,7 +45,10 @@ return [
             'port' => env('MAIL_PORT', 2525),
             'username' => env('MAIL_USERNAME'),
             'password' => env('MAIL_PASSWORD'),
-            'timeout' => null,
+            // Live deployments must refuse delivery if STARTTLS is unavailable.
+            'auto_tls' => true,
+            'require_tls' => ! in_array(env('APP_ENV', 'production'), ['local', 'testing'], true),
+            'timeout' => 15,
             'local_domain' => env('MAIL_EHLO_DOMAIN', parse_url((string) env('APP_URL', 'http://localhost'), PHP_URL_HOST)),
         ],
 

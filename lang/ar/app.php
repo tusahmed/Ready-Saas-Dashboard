@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'email_password_confirmation_hint' => 'أدخل كلمة المرور الحالية فقط عند تغيير عنوان بريدك الإلكتروني.',
+    'credentials_password_confirmation_hint' => 'أدخل كلمة المرور الحالية عند تغيير بريدك الإلكتروني أو كلمة مرور حسابك.',
+    'password_public_demo' => 'لا يمكن استخدام كلمة المرور التجريبية المنشورة في بيئة الإنتاج. اختر كلمة مرور خاصة.',
     'nav_overview' => 'نظرة عامة',
     'workspace_appearance' => 'مظهر مساحة العمل',
     'workspace_appearance_description' => 'اختر طريقة التنقل والألوان التي تناسب طريقة عملك.',
@@ -365,7 +368,7 @@ return [
     'workspace_logo' => 'شعار مساحة العمل',
     'workspace_logo_description' => 'أضف هوية نشاطك إلى مساحة العمل.',
     'logo_upload' => 'اختيار شعار',
-    'logo_upload_help' => 'PNG أو JPG أو WEBP. الحد الأقصى لحجم الملف: 2 ميجابايت.',
+    'logo_upload_help' => 'PNG أو JPG أو WEBP، بحد أقصى 2 ميجابايت و4 ميجابكسل (4096 بكسل لكل ضلع). استخدم اسمًا مثل company-logo.png.',
     'logo_preview' => 'معاينة شعار مساحة العمل',
     'remove_logo' => 'إزالة الشعار الحالي',
     'logo_saved_hint' => 'تُطبّق التغييرات عند حفظ الإعدادات.',
