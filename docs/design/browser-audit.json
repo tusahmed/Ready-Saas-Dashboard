@@ -1,0 +1,1043 @@
+{
+  "passed": true,
+  "viewport": "1536x1024 native concept dimensions",
+  "checks": [
+    {
+      "label": "Login Arabic desktop",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "فكرتك القادمة تبدأ من هنا.",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "40px"
+      }
+    },
+    {
+      "label": "vertical ar desktop /admin",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "لوحة المنصة",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "vertical ar desktop /admin/clients",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "العملاء",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "vertical ar desktop /admin/clients/create",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "إضافة عميل",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "vertical ar desktop /users",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "إدارة المستخدمين",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "vertical ar desktop /users/create",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "إضافة مستخدم",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "vertical ar desktop /roles",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "إدارة المستخدمين",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "vertical ar desktop /roles/create",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "إضافة دور",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "vertical ar desktop /profile",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "ملفي الشخصي",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "vertical ar desktop /notifications",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "الإشعارات",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "vertical ar desktop /admin/notifications/create",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "إرسال إشعار",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "vertical ar desktop /search?q=Acme",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "نتائج البحث",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "vertical en desktop /admin",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "Board",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "vertical en desktop /admin/clients",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "Clients",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "vertical en desktop /admin/clients/create",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "Add client",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "vertical en desktop /users",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "Users Management",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "vertical en desktop /users/create",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "Add user",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "vertical en desktop /roles",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "Users Management",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "vertical en desktop /roles/create",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "Add role",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "vertical en desktop /profile",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "My profile",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "vertical en desktop /notifications",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "Notifications",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "vertical en desktop /admin/notifications/create",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "Send notification",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "vertical en desktop /search?q=Acme",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "Search results",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "horizontal ar desktop /admin",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "لوحة المنصة",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "horizontal ar desktop /admin/clients",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "العملاء",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "horizontal ar desktop /admin/clients/create",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "إضافة عميل",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "horizontal ar desktop /users",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "إدارة المستخدمين",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "horizontal ar desktop /users/create",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "إضافة مستخدم",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "horizontal ar desktop /roles",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "إدارة المستخدمين",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "horizontal ar desktop /roles/create",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "إضافة دور",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "horizontal ar desktop /profile",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "ملفي الشخصي",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "horizontal ar desktop /notifications",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "الإشعارات",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "horizontal ar desktop /admin/notifications/create",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "إرسال إشعار",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "horizontal ar desktop /search?q=Acme",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "نتائج البحث",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "horizontal en desktop /admin",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "Board",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "horizontal en desktop /admin/clients",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "Clients",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "horizontal en desktop /admin/clients/create",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "Add client",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "horizontal en desktop /users",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "Users Management",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "horizontal en desktop /users/create",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "Add user",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "horizontal en desktop /roles",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "Users Management",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "horizontal en desktop /roles/create",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "Add role",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "horizontal en desktop /profile",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "My profile",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "horizontal en desktop /notifications",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "Notifications",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "horizontal en desktop /admin/notifications/create",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "Send notification",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "horizontal en desktop /search?q=Acme",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "Search results",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "Horizontal fr desktop profile",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "Mon profil",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "Horizontal de desktop profile",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "Mein Profil",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "Horizontal es desktop profile",
+      "width": 1536,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "Mi perfil",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "Arabic dark 320px /admin",
+      "width": 320,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "لوحة المنصة",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "28px"
+      }
+    },
+    {
+      "label": "Arabic dark 320px /profile",
+      "width": 320,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "ملفي الشخصي",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "28px"
+      }
+    },
+    {
+      "label": "Arabic dark 320px /roles/create",
+      "width": 320,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "إضافة دور",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "28px"
+      }
+    },
+    {
+      "label": "Arabic dark 320px /users",
+      "width": 320,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "إدارة المستخدمين",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "28px"
+      }
+    },
+    {
+      "label": "Arabic dark 320px /admin/notifications/create",
+      "width": 320,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "إرسال إشعار",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "28px"
+      }
+    },
+    {
+      "label": "Arabic dark 390px /admin",
+      "width": 390,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "لوحة المنصة",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "28px"
+      }
+    },
+    {
+      "label": "Arabic dark 390px /profile",
+      "width": 390,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "ملفي الشخصي",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "28px"
+      }
+    },
+    {
+      "label": "Arabic dark 390px /roles/create",
+      "width": 390,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "إضافة دور",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "28px"
+      }
+    },
+    {
+      "label": "Arabic dark 390px /users",
+      "width": 390,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "إدارة المستخدمين",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "28px"
+      }
+    },
+    {
+      "label": "Arabic dark 390px /admin/notifications/create",
+      "width": 390,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "إرسال إشعار",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "28px"
+      }
+    },
+    {
+      "label": "Arabic dark 768px /admin",
+      "width": 768,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "لوحة المنصة",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "30px"
+      }
+    },
+    {
+      "label": "Arabic dark 768px /profile",
+      "width": 768,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "ملفي الشخصي",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "30px"
+      }
+    },
+    {
+      "label": "Arabic dark 768px /roles/create",
+      "width": 768,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "إضافة دور",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "30px"
+      }
+    },
+    {
+      "label": "Arabic dark 768px /users",
+      "width": 768,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "إدارة المستخدمين",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "30px"
+      }
+    },
+    {
+      "label": "Arabic dark 768px /admin/notifications/create",
+      "width": 768,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "إرسال إشعار",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "30px"
+      }
+    },
+    {
+      "label": "Arabic dark 1099px /admin",
+      "width": 1099,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "لوحة المنصة",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "30px"
+      }
+    },
+    {
+      "label": "Arabic dark 1099px /profile",
+      "width": 1099,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "ملفي الشخصي",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "30px"
+      }
+    },
+    {
+      "label": "Arabic dark 1099px /roles/create",
+      "width": 1099,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "إضافة دور",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "30px"
+      }
+    },
+    {
+      "label": "Arabic dark 1099px /users",
+      "width": 1099,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "إدارة المستخدمين",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "30px"
+      }
+    },
+    {
+      "label": "Arabic dark 1099px /admin/notifications/create",
+      "width": 1099,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "إرسال إشعار",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "30px"
+      }
+    },
+    {
+      "label": "Arabic dark 1100px /admin",
+      "width": 1100,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "لوحة المنصة",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "Arabic dark 1100px /profile",
+      "width": 1100,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "ملفي الشخصي",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "Arabic dark 1100px /roles/create",
+      "width": 1100,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "إضافة دور",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "Arabic dark 1100px /users",
+      "width": 1100,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "إدارة المستخدمين",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "Arabic dark 1100px /admin/notifications/create",
+      "width": 1100,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "إرسال إشعار",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "32px"
+      }
+    },
+    {
+      "label": "Client Arabic mobile",
+      "width": 390,
+      "overflow": 0,
+      "cairoLoaded": true,
+      "badTypography": [],
+      "heading": {
+        "tag": "H1",
+        "text": "لوحة التحكم",
+        "family": "Cairo, sans-serif",
+        "weight": "900",
+        "size": "28px"
+      }
+    }
+  ],
+  "browserErrors": []
+}

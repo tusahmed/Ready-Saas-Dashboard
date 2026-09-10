@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "baseURL": "http://127.0.0.1:8000",
+  "checks": [
+    "admin@orbit.test: login password reveal and hide preserve value without submitting",
+    "Custom selects support End/Enter/typeahead/Escape, real change events, native selectOption and disabled state",
+    "Nullable role dropdown clears back to the real empty form value",
+    "Dependent client selector follows audience; required validation focuses custom control and blocks invalid submit",
+    "Permission select-all handles checked, unchecked and indeterminate states",
+    "admin: grouped sidebar expands, collapses and supports keyboard navigation",
+    "admin: saved horizontal preference survives reload; hover, first tap, keyboard and Escape work",
+    "admin: horizontal preference uses accessible mobile drawer at 1099px; RTL and dark layouts fit",
+    "admin: Cairo bold is the computed base font",
+    "owner@acme.test: login password reveal and hide preserve value without submitting",
+    "client: grouped sidebar expands, collapses and supports keyboard navigation",
+    "client: saved horizontal preference survives reload; hover, first tap, keyboard and Escape work",
+    "client: horizontal preference uses accessible mobile drawer at 1099px; RTL and dark layouts fit",
+    "client: Cairo bold is the computed base font"
+  ],
+  "browserErrors": [],
+  "completedAt": "2026-09-10T01:17:35.843Z"
+}

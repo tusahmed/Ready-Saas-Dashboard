@@ -1,0 +1,8 @@
+﻿/* Cairo by Mohamed Gaber. Bundled locally under the SIL Open Font License. */
+@font-face {
+    font-family: 'Cairo';
+    font-style: normal;
+    font-weight: 200 1000;
+    font-display: swap;
+    src: url('cairo-variable.ttf') format('truetype');
+}

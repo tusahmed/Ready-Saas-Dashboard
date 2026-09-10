@@ -1,0 +1,11 @@
+{
+    "private": true,
+    "description": "Optional local browser verification; never required on the hosting server.",
+    "scripts": {
+        "test": "node smoke.cjs",
+        "test:redesign": "node redesign-interactions.cjs"
+    },
+    "devDependencies": {
+        "playwright": "1.62.1"
+    }
+}
